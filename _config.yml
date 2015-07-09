@@ -18,7 +18,7 @@ url:            'http://your-blog-url.example.com'
 author:         'Your Name'
 authorTwitter:  'YourTwitterUsername'
 
-permalink:       /:year/:title/
+# permalink:       /:year/:title/
 
 defaults:
     -
@@ -31,5 +31,11 @@ defaults:
         scope:
             path: "" # empty string for all files
             type: posts
+        values:
+            layout: post
+    -
+        scope:
+            path: ""
+            type: drafts
         values:
             layout: post
