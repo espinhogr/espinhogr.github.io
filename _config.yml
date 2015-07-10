@@ -1,6 +1,6 @@
-name: Your New Jekyll Site
-description: Blogging about stuffs
-meta_description: "Your New Jekyll Site, Blogging about stuffs"
+name: Espinho
+description: Blogging about my learnings and ideas
+meta_description: "Espinho's personal blog"
 
 aboutPage: true
 
@@ -9,16 +9,14 @@ highlighter: pygments
 
 paginate: 20
 baseurl: /
-domain_name: 'http://yourblog-domain.com'
+domain_name: 'http://espinhogr.github.io'
 google_analytics: 'UA-XXXXXXXX-X'
-disqus_shortname: 'your-disqus-shortname'
+disqus_shortname: 'espinhogrgithubio'
 
 # Details for the RSS feed generator
-url:            'http://your-blog-url.example.com'
-author:         'Your Name'
-authorTwitter:  'YourTwitterUsername'
-
-# permalink:       /:year/:title/
+url:            'http://espinhogr.github.io'
+author:         'Espinho'
+authorTwitter:  'espinhogr'
 
 defaults:
     -
