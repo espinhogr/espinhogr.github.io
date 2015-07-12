@@ -4,8 +4,7 @@ title: Trampolines in scala for newbies
 
 ## Preface 
 
-This post doesn't want to be a comprehensive explanation of what Tramplines are in functional-programming/scala but only an overview on how to use them as
-a starting point to study more and understand them deeper.
+This post doesn't want to be a comprehensive explanation of what Tramplines are in functional-programming/scala but only an overview on how to use them and a starting point to study more and have a deeper understanding.
 I'm writing what I learned from my personal experience with the hope to help people that are trying to learn scala coming from a java world. I will be
 intentionally sloppy to not make things heavy and to easy the learning process.
 
@@ -19,17 +18,17 @@ you will use a Monad in the article but with as less pain as possible.
 One of the cases in which you may need a Trampoline is to jump in a pool, but I think this is not why you are here. 
 Sticking to the programming context, you may need it if you are using recursion in your scala code. As long as you use tail recursion with one function 
 everything is fine as the compiler will optimize it for you and transforme it in a loop, issues come when you are trying to use tail recursive calls between two
-functions or when you don't have a tail recursion call.
+functions or when you don't have a tail recursive call.
 
 The case of having two functions is well explained in [scalaz documentation](http://eed3si9n.com/learning-scalaz/Stackless+Scala+with+Free+Monads.html)
 but I haven't found any example of creating a Trampoline over a non-tail recursion, that's why I'm writing this post.
 
-Hence you need a Trampoline whenever your code could blow up your JVM stack because the depth of recursion.
+In few words you need a Trampoline whenever your code could blow up your JVM stack because the depth of recursion.
 
 ## Why does the Trampoline solve this problem?
 
 The trampoline solves this problem because it basically builds an in-memory structure that can be solved with a tail recursion (that can be optimized to a loop). 
-Without entering the details, it does it by not executing the function you are calling but concatenating them and executing them in a "loop" afterward. 
+Without entering the details, it does the magic by not executing the function you are calling but concatenating them and executing them in a "loop" afterward. 
 This deferring - in scalaz - is called _suspension_ because you are suspending the execution of that function and you will _resume_ it later. `resume` is
 the function that does the magic.
 
@@ -38,7 +37,7 @@ the function that does the magic.
 ### The problem
 
 We are trying to sum 1 to each element of a list and we expect to have another list as output of our algorithm. To be clear if we enter `List(1,2)` we expect as
-output another list `List(2,3)`. We solve this problem with a non-tail recursive call to highlight the problem. Here is the code:
+output another list `List(2,3)`. We solve this problem with a non-tail recursive call in order to highlight the problem. Here is the code:
 
 {% highlight scala %}
 object TramplineTest extends App {
@@ -51,8 +50,7 @@ object TramplineTest extends App {
 }
 {% endhighlight %}
 
-This code works fine for a small amount of element in the list but as soon as we increase the number of elements in the list it blows up the stack. In this
-very moment we have to think about using a `Trampoline`.
+This code works fine for a small amount of element in the list but as soon as we increase the number of elements it blows up the stack. In this very moment we have to think about using a `Trampoline`.
 
 ### Walking toward the solution
 

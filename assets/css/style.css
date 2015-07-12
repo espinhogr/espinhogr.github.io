@@ -182,8 +182,10 @@ a,
 	transition: all 0.15s ease;
 }
 
-ul 	{ margin:0; padding:0; }
-li	{ list-style-type:circle; list-style-position:inside; }
+ul, ol { margin:0; padding:0; margin-bottom:20px; margin-left:10px; }
+li	{ list-style-position:inside; }
+ol li {list-style-type: upper-roman;}
+ul li {list-style-type:disk;}
 
 /* Line Height */
 #post-body, p { line-height:1.7; }
@@ -233,7 +235,8 @@ em, i { font-style: italic; }
 }
 
 .post h2 {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
+	margin-top:40px;
 	  font: 300 24px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;
 	  color: #111;
 }
@@ -291,7 +294,7 @@ hr {
 	background: #eee;
 }
 
-span.code { font-family:Menlo, Monaco, Courier; background-color:#EEE; font-size:14px; }
+code { font-family:Menlo, Monaco, Courier; background-color:#EEE; font-size:14px; }
 
 pre	{
 	font-family:Menlo, Monaco, Courier;
