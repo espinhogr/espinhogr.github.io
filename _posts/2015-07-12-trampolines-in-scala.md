@@ -1,5 +1,12 @@
 ---
 title: Trampolines in scala for newbies
+category: scala
+tags:
+ - scala
+ - trampolines
+ - functional programming
+ - monad
+ - tail recursion
 ---
 
 ## Preface 
