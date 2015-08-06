@@ -6,6 +6,9 @@ aboutPage: true
 
 markdown: redcarpet
 highlighter: pygments
+redcarpet:
+  extensions:
+    - tables
 
 paginate: 20
 baseurl: /
