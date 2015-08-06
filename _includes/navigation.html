@@ -8,6 +8,10 @@
             <a href='{{ site.baseurl }}about'>About</a>
         {% endif %}
     {% endif %}
-    <a href='{{ site.baseurl }}curriculum'>Curriculum Vitae</a>
+
+    {% if page.url != "/curriculum/" %}
+      <a href='{{ site.baseurl }}curriculum'>Curriculum Vitae</a>
+    {% endif %}
+
     <a class="cta" href="{{ site.baseurl }}feed.xml">Subscribe</a>
 </nav>
