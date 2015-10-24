@@ -9,9 +9,9 @@ tags:
  - tail recursion
 ---
 
-## Preface 
+## Preface
 
-This post doesn't want to be a comprehensive explanation of what Tramplines are in functional-programming/scala but only an overview on how to use them and a starting point to study more and have a deeper understanding.
+This post doesn't want to be a comprehensive explanation of what Trampolines are in functional-programming/scala but only an overview on how to use them and a starting point to study more and have a deeper understanding.
 I'm writing what I learned from my personal experience with the hope to help people that are trying to learn scala coming from a java world. I will be
 intentionally sloppy to not make things heavy and to easy the learning process.
 
@@ -22,9 +22,9 @@ you will use a Monad in the article but with as less pain as possible.
 
 ## When do I need a Trampoline?
 
-One of the cases in which you may need a Trampoline is to jump in a pool, but I think this is not why you are here. 
-Sticking to the programming context, you may need it if you are using recursion in your scala code. As long as you use tail recursion with one function 
-everything is fine as the compiler will optimize it for you and transforme it in a loop, issues come when you are trying to use tail recursive calls between two
+One of the cases in which you may need a Trampoline is to jump in a pool, but I think this is not why you are here.
+Sticking to the programming context, you may need it if you are using recursion in your scala code. As long as you use tail recursion with one function
+everything is fine as the compiler will optimize it for you and transform it in a loop, issues come when you are trying to use tail recursive calls between two
 functions or when you don't have a tail recursive call.
 
 The case of having two functions is well explained in [scalaz documentation](http://eed3si9n.com/learning-scalaz/Stackless+Scala+with+Free+Monads.html)
@@ -34,8 +34,8 @@ In few words you need a Trampoline whenever your code could blow up your JVM sta
 
 ## Why does the Trampoline solve this problem?
 
-The trampoline solves this problem because it basically builds an in-memory structure that can be solved with a tail recursion (that can be optimized to a loop). 
-Without entering the details, it does the magic by not executing the function you are calling but concatenating them and executing them in a "loop" afterward. 
+The trampoline solves this problem because it basically builds an in-memory structure that can be solved with a tail recursion (that can be optimized to a loop).
+Without entering the details, it does the magic by not executing the function you are calling but concatenating them and executing them in a "loop" afterward.
 This deferring - in scalaz - is called _suspension_ because you are suspending the execution of that function and you will _resume_ it later. `resume` is
 the function that does the magic.
 
@@ -62,9 +62,9 @@ This code works fine for a small amount of element in the list but as soon as we
 ### Walking toward the solution
 
 As we said before, the Trampoline is a particular case of a Free Monad and this leads us to the Free monad implementation. If you are curious you can look into
-scalaz sourcecode [Free.scala](https://github.com/scalaz/scalaz/blob/series/7.2.x/core/src/main/scala/scalaz/Free.scala) and see that a Free Monad has only 3 
+scalaz sourcecode [Free.scala](https://github.com/scalaz/scalaz/blob/series/7.2.x/core/src/main/scala/scalaz/Free.scala) and see that a Free Monad has only 3
 instances that you can use to create a trampoline:
-	
+
 - `Return`: This just contains a value that you want to return, therefore you usually use it at the leaves of your recursion.
 - `Suspend`: This contains a step of a computation that you want to execute. Technically it contains a function with arity 0 that will be executed later. You need to use this
  whenever you are calling your function recursively.
@@ -78,7 +78,7 @@ Obviously the wise developer of scalaz made this instances private and you canno
 - `flatMap`: Creates a GoSub object
 
 With the functions just presented you can create the equivalent of the AST for your recursion but you still need a way to interpret it in order to have the
-result. Luckily this is not something that you have to implement, it's already there and it's a method of `Trampoline` class. The `run` method. Calling this 
+result. Luckily this is not something that you have to implement, it's already there and it's a method of `Trampoline` class. The `run` method. Calling this
 method you will automatically execute the code and behind the scene calling the `resume` method.
 
 ### The solution
@@ -109,5 +109,3 @@ As you can see we just applied the functions that we discussed before `done`, `s
 as a `Trampoline` and then we called `run` on the root call.
 
 Hope this helps newbies like me to understand better `Trampolines` and how to use them.
-
-
