@@ -34,8 +34,8 @@ __Personal__: Aptitude for new technologies/working methods teaching and learnin
 ## Education
 | Period | School |
 | -----------: | ------ |
-| Oct 2009 Mar 2012 | _ALMA MATER STUDIORUM, Bologna (IT)_<br />__Master of Science in Computer Engineering__ (2 years) - 106/110<br />_Thesis in computer vision_: Graphical interface for image processing of microscopic genetically-modified bacteria cultures. |
-| Oct 2006 Oct 2009 | _ALMA MATER STUDIORUM, Bologna (IT)_<br />__Bachelor of Science in Computer Engineering__ (3 years) - 102/110<br /> _Thesis in artificial intelligence_: Boolean network design via genetic algorithms. |
+| Oct 2009 Mar 2012 | _ALMA MATER STUDIORUM, Bologna (IT)_<br />__Master of Science in Software Engineering__ (2 years) - 106/110<br />_Thesis in computer vision_: Graphical interface for image processing of microscopic genetically-modified bacteria cultures. |
+| Oct 2006 Oct 2009 | _ALMA MATER STUDIORUM, Bologna (IT)_<br />__Bachelor of Science in Software Engineering__ (3 years) - 102/110<br /> _Thesis in artificial intelligence_: Boolean network design via genetic algorithms. |
 
 ## Relevant courses
 Artificial Intelligence, Systems for Data Mining, Automation Systems and Technologies, Computational Models and Languages, Computer Architecture, Computer Networks, Computer Vision, Concurrent and Distributed Programming, Database Systems, Distributed Systems, Fundamentals of Computer Graphics, Information Processing Systems, Information Systems, Methods and Models for Decision Support, Multi-Agent Systems, Operating Systems, Principles of Signal Processing, Quality Management, Software Engineering, Software System Engineering, Technologies and Telecommunication Networks.
