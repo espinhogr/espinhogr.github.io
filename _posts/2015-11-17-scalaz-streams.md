@@ -10,17 +10,17 @@ tags:
 
 ## Preface
 
-Few days ago I came across to a use case I think is perfect to showcase how to create/use a stream. As part of my daily job I had to create a report from multiple databases sources and join together the data (ETL). In this article I will focus only on the MySQL data part to not go off-topic but this can be easily extended to any database. The problem I was trying to solve was reading the data and processing it without loading the whole dataset in memory. Streams are an amazing abstraction to do this.
+Few days ago I came across to a use case I think is perfect to showcase how to create/use a stream. As part of my daily job I had to create a report from multiple databases sources and join together the data (ETL). In this article I will focus only on the MySQL data part to not go off-topic but this can be easily extended to any database. Also I the focus will be only on the stream itself and not on the data I was working with. The problem I was trying to solve was reading the data and processing it without loading the whole dataset in memory. Streams are an amazing abstraction to do this.
 
 ## Push vs Pull Streams
-When you approach streaming processing the main thing you need to know is whether you are using a push or a pull stream. Sometimes you have the choice over the stream type, sometimes you are forced to use the one your domain needs.
+When you approach stream processing, the main thing you need to know is whether you are using a _push_ or a _pull_ stream. Sometimes you have the choice over the stream type, sometimes you are forced to use the one your domain needs.
 
-The main difference here is that if you imagine the classical pattern producer-consumer you have two cases:
+Imagining the classic pattern producer-consumer you have two cases:
 
-  - _Push_ --> The producer is producing messages independently from the consumer. If the consumer is faster than the producer everything is fine, if the producer is faster then you have a problem because you are flooding the consumer and it will end with it drowning. This effect is called _backpressure_ and you have to deal with it (unless the stream implementation you're using already provides a solution for that).
+  - _Push_ --> The producer is producing messages independently from the consumer. If the consumer is faster than the producer everything is fine, if the producer is faster then you have a problem, you are flooding the consumer and it will end up drowning. This effect is called _backpressure_ and you have to deal with it (unless the stream implementation you're using already provides a solution for that).
   - _Pull_ <-- The producer produces new messages only when the consumer asks for them. Here the consumer has control on the flow speed therefore you don't experience _backpressure_.
 
-Here I refer to messages as the values that your stream produces but obviously it can contain anything.
+Here I referred to messages as the values that your stream produces but obviously it can contain anything.
 
 ## Scalaz streams
 Scalaz streams are _pull_ streams and the producer abstraction is mapped on the trait `Process[+F[_], +O]`. In this trait, type `O` is the type of values the producer produces and `F` is an effect that is triggered when new values are requested from the consumer. Usually `F` is `Task` because we want to load data asynchronously.
@@ -55,7 +55,7 @@ object ImplicitFuture {
 
 This code is quite easy to understand, it basically lifts a `Future[A]` to a `FutureOps[A]` and allows you to call the method `asScalaz` on it to convert it to a `Task[A]`. If you don't know why it extends AnyVal you should read [this](http://www.scala-lang.org/api/current/index.html#scala.AnyVal), it's all about runtime performance.
 
-When the chores are done we are ready to implement our stream. The function is recursive for convenience. I'm really sorry for the indentation but scala has really long types and I didn't want to omit them to provide a better explanation.
+When the chores are done we are ready to implement our stream. The function is recursive for convenience. I'm really sorry for the indentation but scala has really long types and I didn't want to omit them so I can provide a better explanation.
 {% highlight scala %}
 import slick.jdbc.JdbcBackend
 import slick.lifted.Query
@@ -73,7 +73,7 @@ class StreamBuilder(db: JdbcBackend.Database) {
       offset: Int, prevExtract: Int): Process[Task, MyRecord] = {
         import ImplicitFuture._
 
-        // Termination condition: if you read less than PAGE_SIZE in the
+        // Termination condition: if you've read less than PAGE_SIZE in the
         // last call it means that you are in the last page
         if (prevExtract < PAGE_SIZE)
 
@@ -82,7 +82,7 @@ class StreamBuilder(db: JdbcBackend.Database) {
         else {
 
           // This makes a call to the DB via Slick and gets only the
-          // records where your stream arrived.
+          // records you didn't read yet.
           val queryFuture: Future[Seq[MyRecord]] =
             db.run(query.drop(offset).take(PAGE_SIZE).result)
 
@@ -101,15 +101,15 @@ class StreamBuilder(db: JdbcBackend.Database) {
     }
 
     // This is the main function, the entry point for the recursion.
-    // Here you pass the query you want to execute on the DB that
-    // returns the sequence of MyRecord you want in the stream.
+    // Here you pass the query you want to execute on the DB
+    // returning the sequence of MyRecord you want in the stream.
     def selectAsStream(
       query: Query[MyTable, MyRecord, Seq]): Process[Task, MyRecord] =
         executeQuery(query, 0, PAGE_SIZE)
 }
 {% endhighlight %}
 
-The code, given a `Query`, returns a `Process[Task, MyRecord]` that is a stream of `MyRecord` values. Every time the stream doesn't have any value to serve, it queries the DB and gives you the result back `PAGE_SIZE` by `PAGE_SIZE`.
+The code, given a `Query`, returns a `Process[Task, MyRecord]` being a stream of `MyRecord` values. Every time the stream doesn't have any value to serve, it queries the DB and gives you the result back `PAGE_SIZE` by `PAGE_SIZE`.
 
 Now it's time to write the code that reads from the stream.
 {% highlight scala %}
@@ -128,8 +128,8 @@ object Test extends App {
 }
 {% endhighlight %}
 
-What happens in this code is that we create a `StreamBuilder` and we tell it to create a stream for us. With the `map` function we are telling the stream that it has a new step down the line: `println`. This is a trivial step but we can obviously put anything there. With the double `run` call we start the stream and the first `Task` that produces values.
-What this code produces is a printing on the `stdout` of all the records retrieved from the DB without making your heap explode in case you have a lot of them.
+What happens in this code is that we create a `StreamBuilder` and we tell it to create a stream for us. With the `map` function we are telling the stream that it has a new step down the line: `println`. This is a trivial step but we can obviously put anything there. With the double `run` call we start the stream and the first `Task` producing values.
+What this code does is a printing on the `stdout` of all the records retrieved from the DB without making your heap explode in case you have a lot of them.
 
 You might be tempted to write
 {% highlight scala %}
