@@ -4,11 +4,8 @@ meta_description: "Espinho's personal blog"
 
 aboutPage: true
 
-markdown: redcarpet
-highlighter: pygments
-redcarpet:
-  extensions:
-    - tables
+xgems: [jekyll-paginate]
+
 
 paginate: 20
 baseurl: /

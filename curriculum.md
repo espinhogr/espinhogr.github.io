@@ -12,6 +12,7 @@ date:   2015-08-04
 </style>
 
 ## Work experience
+
 | Period | Job |
 | -----: | --- |
 | Mar 2014 Ongoing | [VisualDNA](http://www.visualdna.com), _London (UK)_ - __Software Engineer__ |
@@ -25,6 +26,7 @@ __Languages__: Java, Scala, C, SQL, Shell Script, Javascript, HTML5, CSS3, C++.
 __OS__: Linux, MacOS, Windows.
 
 ## Education
+
 | Period | School |
 | -----------: | ------ |
 | Oct 2009 Mar 2012 | _ALMA MATER STUDIORUM, Bologna (IT)_<br />__Master of Science in Software Engineering__ (2 years) - 106/110<br />_Thesis in computer vision_: Graphical interface for image processing of microscopic genetically-modified bacteria cultures. |
@@ -34,6 +36,7 @@ __OS__: Linux, MacOS, Windows.
 Artificial Intelligence, Systems for Data Mining, Automation Systems and Technologies, Computational Models and Languages, Computer Architecture, Computer Networks, Computer Vision, Concurrent and Distributed Programming, Database Systems, Distributed Systems, Fundamentals of Computer Graphics, Information Processing Systems, Information Systems, Methods and Models for Decision Support, Multi-Agent Systems, Operating Systems, Principles of Signal Processing, Quality Management, Software Engineering, Software System Engineering, Technologies and Telecommunication Networks.
 
 ## Research experience
+
 | Period | Research center |
 | -----: | ------ |
 | Dec 2011 Mar 2012 | __Advanced Research Center on Electronic Systems for Information and Communication Technologies E. De Castro (ARCES)__ - __In cooperation with Computer Vision Group__, _Bologna (IT)_ <ul><li>Estimate a digital camera radiometric response function in microscopic environment.</li><li>Prototype and develop an algorithm for genetically-modified bacteria segmentation in microscopic environment.</li><li>Design and develop of a user-friendly software for biologist in order to retrieve charts and statistics about analyzed microscopic bacteria cultures.</li></ul> |
