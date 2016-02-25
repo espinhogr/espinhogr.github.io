@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{{ site.name }}{% if page.title %} - {{ page.title }}{% endif %}</title>
-  <link rel="shortcut icon" href="/assets/images/favicon.ico">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml">
-  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  {% if page.title %}
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  {% endif %}
+  
+  {% if page.description %}
+  <meta name="description" content="{{ page.description }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta name="twitter:description" content="{{ page.description }}" /> 
+  {% endif %}
+
+  {% if site.gplus_url %}
+  <link rel="author" href="{{ site.gplus_url }}" />
+  {% endif %}
+
+  <meta property="og:url" content="{{ site.domain_name }}{{ page.url }}" />
+  <meta name="twitter:url" content="{{ site.domain_name }}{{ page.url }}" />
+  
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml" />
+  <link rel="stylesheet" href="/assets/css/highlight.css" />
 </head>
 <body>
 

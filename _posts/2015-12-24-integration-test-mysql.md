@@ -7,6 +7,8 @@ tags:
  - MySQL
  - docker
  - dao
+description: "How to write integration tests against a real external instance with Docker. Real example using MySQL"
+
 ---
 
 ## How should I test a Data Access Object (DAO)? ##

@@ -9,7 +9,17 @@ gems: [jekyll-paginate]
 
 paginate: 20
 baseurl: /
+
+#
+# SEO and sharing
+#
+
+# Used for twitter sharing
 domain_name: 'http://espinhogr.github.io'
+
+gplus_url: 'http://google.com/+EspinhoGr'
+
+
 google_analytics: 'UA-39854308-4'
 disqus: true
 disqus_shortname: 'espinhogrgithubio'

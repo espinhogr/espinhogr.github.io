@@ -6,6 +6,8 @@ tags:
  - streams
  - functional programming
  - reactive
+description: "How to use scalaz streams in scala. Example pulling data from MySQL in a streamed way"
+
 ---
 
 ## Preface

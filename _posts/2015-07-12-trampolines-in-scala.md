@@ -7,6 +7,8 @@ tags:
  - functional programming
  - monad
  - tail recursion
+description: "How and when to use scalaz Trampolines in scala. Easy guide with explanation."
+
 ---
 
 ## Preface

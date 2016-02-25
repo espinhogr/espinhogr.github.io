@@ -7,6 +7,8 @@ tags:
  - utilities
  - command
  - ssh
+description: "Screen command in linux to ease your ssh sessions. Don't lose everything when you get disconnected"
+
 ---
 
 ## The problem
