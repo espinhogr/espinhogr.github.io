@@ -25,6 +25,11 @@
   <link rel="author" href="{{ site.gplus_url }}" />
   {% endif %}
 
+  {% if page.image %}
+  <meta property="og:image" content="{{ page.image }}" />
+  <meta property="twitter:image" content="{{ page.image }}" />
+  {% endif%}
+
   <meta property="og:url" content="{{ site.domain_name }}{{ page.url }}" />
   <meta name="twitter:url" content="{{ site.domain_name }}{{ page.url }}" />
   
